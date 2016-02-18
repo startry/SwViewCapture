@@ -87,7 +87,7 @@ view.swContentCapture { (capturedImage) -> Void in
 
 ## Requirement
 
-iOS 8.0+
+iOS 8.0+, Swift 2.0+
 
 SwViewCapture is available through [CocoaPods](http://cocoapods.org) now. To Install it, simply and the following line to your Podfile:
 
