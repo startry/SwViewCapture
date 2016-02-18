@@ -98,7 +98,7 @@ iOS 8.0+
 SwViewCapture isn't available through [CocoaPods](http://cocoapods.org) now. To Install it, simply and the following line to your Podfile:
 
 ``` ruby
-pod "SwViewCapture", :git => "https://github.com/startry/SwViewCapture.git"
+pod "SwViewCapture", :git => "https://github.com/startry/SwViewCapture.git", :tag => "1.0.0"
 ```
 
 ## License
