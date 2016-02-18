@@ -19,7 +19,6 @@ s.requires_arc = true
 s.source_files  = ["SwViewCapture/*.swift", "SwViewCapture/SwViewCapture.h"]
 s.public_header_files = ["SwViewCapture/SwViewCapture.h"]
 
-s.public_header_files = 'Pod/Classes/**/*.h'
-s.frameworks = 'UIKit', 'Foundation', 'ObjectiveC', 'WebKit'
+# s.frameworks = 'UIKit', 'Foundation', 'ObjectiveC', 'WebKit'
 
 end
