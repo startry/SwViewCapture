@@ -2,9 +2,13 @@
 
 A nice iOS View Capture Library which can capture all content.
 
+SwViewCapture could convert all content of UIWebView to a UIImage.
+
 一个用起来还不错的iOS截图库.(支持截取所有内容, 适用于所有ScrollView组成的视图, 包括WebView)
 
- <img src="https://raw.githubusercontent.com/startry/SwViewCapture/master/capture_demo.gif" width = "320" alt="Example" align=center />
+SwViewCapture支持截取网页以及ScrollView的所有内容
+
+ <img src="https://raw.githubusercontent.com/startry/SwViewCapture/master/capture_demo.gif" width ="320" alt="Example" align=center />
 
 ## Feature
 
