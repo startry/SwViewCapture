@@ -16,8 +16,8 @@ s.social_media_url = 'https://twitter.com/xStartry'
 s.platform     = :ios, '8.0'
 s.requires_arc = true
 
-s.source_files = 'Pod/Classes/**/*'
- s.source_files  = ["SwViewCapture/*.swift", "SwViewCapture/SwViewCapture.h"]
+s.source_files  = ["SwViewCapture/*.swift", "SwViewCapture/SwViewCapture.h"]
+s.public_header_files = ["SwViewCapture/SwViewCapture.h"]
 
 s.public_header_files = 'Pod/Classes/**/*.h'
 s.frameworks = 'UIKit', 'Foundation', 'ObjectiveC', 'WebKit'
