@@ -8,6 +8,10 @@ SwViewCapture could convert all content of UIWebView to a UIImage.
 
 SwViewCapture支持截取网页以及ScrollView的所有内容
 
+[![Version](https://img.shields.io/cocoapods/v/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
+[![License](https://img.shields.io/cocoapods/l/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
+[![Platform](https://img.shields.io/cocoapods/p/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
+
  <img src="https://raw.githubusercontent.com/startry/SwViewCapture/master/capture_demo.gif" width ="320" alt="Example" align=center />
 
 ## Feature
@@ -85,20 +89,10 @@ view.swContentCapture { (capturedImage) -> Void in
 
 iOS 8.0+
 
-<!--## Installation
- 
- SwViewCapture is available through [CocoaPods](http://cocoapods.org). To install
- it, simply add the following line to your Podfile:
- 
- ```ruby
- pod "SwViewCapture"
- ```
--->
-
-SwViewCapture isn't available through [CocoaPods](http://cocoapods.org) now. To Install it, simply and the following line to your Podfile:
+SwViewCapture is available through [CocoaPods](http://cocoapods.org) now. To Install it, simply and the following line to your Podfile:
 
 ``` ruby
-pod "SwViewCapture", :git => "https://github.com/startry/SwViewCapture.git", :tag => "1.0.0"
+pod "SwViewCapture"
 ```
 
 ## License
