@@ -30,6 +30,9 @@ class STUIWebViewDemoController: UIViewController {
     // MARK: Events
     func didCaptureBtnClicked(button: UIButton){
         webView?.swContentCapture({ (capturedImage) -> Void in
+            
+            UIImageWriteToSavedPhotosAlbum(capturedImage!, self, nil, nil)
+            
             let vc = ImageViewController(image: capturedImage!)
             self.navigationController?.pushViewController(vc, animated: true)
         })

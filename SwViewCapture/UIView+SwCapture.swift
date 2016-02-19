@@ -52,7 +52,7 @@ public extension UIView {
         
         let bounds = self.bounds
         
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 2)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
         
         let context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)
@@ -144,7 +144,7 @@ public extension UIScrollView {
         method_exchangeImplementations(method, swizzledMethod)
         
         let bounds = self.bounds
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 2)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
         
         if (swContainsWKWebView()) {
         self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
@@ -198,7 +198,7 @@ public extension WKWebView {
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
             let bounds = self.bounds
-            UIGraphicsBeginImageContextWithOptions(bounds.size, false, 2)
+            UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
             
             if (self.swContainsWKWebView()) {
                 self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
@@ -234,7 +234,7 @@ public extension WKWebView {
         // Divide
         let page  = floorf(Float(self.scrollView.contentSize.height / self.bounds.height))
         
-        UIGraphicsBeginImageContextWithOptions(self.scrollView.contentSize, false, 2)
+        UIGraphicsBeginImageContextWithOptions(self.scrollView.contentSize, false, UIScreen.mainScreen().scale)
         
         self.swContentDraw(0, maxIndex: Int(page), drawCallback: { [weak self] () -> Void in
             let strongSelf = self
