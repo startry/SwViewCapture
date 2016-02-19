@@ -36,7 +36,7 @@ SwViewCapture支持截取网页以及ScrollView的所有内容
 
 3. 支持截取WKWebView的内容.
 	* 因为WKWebView的内部实现问题, WKWebView比较难去截屏
-	* 目前SwViewCapture对WKWebView的截屏也不完美, 还存在一些瑕疵, 尤其表现在*CSS*样式为`dispaly: absolute;`的元素上。
+	* 目前SwViewCapture对WKWebView的截屏也不完美, 还存在一些瑕疵, 尤其表现在*CSS*样式为`position: absolute;`的元素上。
    
 4. 截图过程中不会出现视图闪烁.
 	* 截图过程中, 使用一张伪装截图遮盖屏幕, 底层截图活动不透明化。
