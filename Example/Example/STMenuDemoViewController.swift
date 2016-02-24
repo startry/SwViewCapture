@@ -102,6 +102,7 @@ class STMenuDemoViewController: UIViewController {
             navigationController?.pushViewController(vc, animated: true)
         }else if(button == webViewBtn) {
             let vc = STWKWebViewDemoController()
+//            navigationController?.presentViewController(vc, animated: true, completion: nil)
             navigationController?.pushViewController(vc, animated: true)
         }else if(button == oldWebViewBtn) {
             let vc = STUIWebViewDemoController()

@@ -16,56 +16,99 @@ public extension WKWebView {
         
         self.isCapturing = true
         
-        // WKWebview's WKContentView will only render visible view, and cache a little more.
-        // It's useless to render all view by change frame according to content.
-        if(self.scrollView.contentSize.height >= UIScreen.mainScreen().bounds.height * 2){
-            self.swContentCompCapture(completionHandler)
-            return
-        }
+        let offset = self.scrollView.contentOffset
         
         // Put a fake Cover of View
         let snapShotView = self.snapshotViewAfterScreenUpdates(true)
         snapShotView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, snapShotView.frame.size.width, snapShotView.frame.size.height)
         self.superview?.addSubview(snapShotView)
         
-        // Backup
-        let bakOffset = self.scrollView.contentOffset
-        let bakFrame = self.frame
-        
-        self.frame = CGRectMake(bakFrame.origin.x, bakFrame.origin.y, self.scrollView.contentSize.width, self.scrollView.contentSize.height)
-        self.scrollView.contentOffset = CGPointZero
-        
-        let method: Method = class_getInstanceMethod(object_getClass(self), Selector("setFrame:"))
-        let swizzledMethod: Method = class_getInstanceMethod(object_getClass(self), Selector("swSetFrame:"))
-        method_exchangeImplementations(method, swizzledMethod)
+        if self.frame.size.height < self.scrollView.contentSize.height {
+            self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentSize.height - self.frame.size.height)
+        }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
-            let bounds = self.bounds
-            UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
+            self.scrollView.contentOffset = CGPointZero
             
-            if (self.swContainsWKWebView()) {
-                self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
-            }else{
-                self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-            }
+            self.swContentCaptureWithoutOffset({ [weak self] (capturedImage) -> Void in
+                let strongSelf = self!
+                
+                strongSelf.scrollView.contentOffset = offset
+                
+                snapShotView.removeFromSuperview()
+                
+                strongSelf.isCapturing = false
+                
+                completionHandler(capturedImage: capturedImage!)
+            })
+        }
+    }
+    
+    private func swContentCaptureWithoutOffset(completionHandler:(capturedImage: UIImage?) -> Void) {
+        let containerView  = UIView(frame: self.bounds)
+        
+        let lastOffset = self.offsetForLastView()
+        
+        let bakFrame     = self.frame
+        let bakSuperView = self.superview
+        let bakIndex     = self.superview?.subviews.indexOf(self)
+        
+        // remove WebView from superview & put container view
+        self.removeFromSuperview()
+        containerView.addSubview(self)
+        
+        let totalSize = self.scrollView.contentSize
+        
+        // Divide
+        let page       = floorf(Float( totalSize.height / containerView.bounds.height))
+
+        UIGraphicsBeginImageContextWithOptions(totalSize, false, UIScreen.mainScreen().scale)
+        
+        self.swContentPageDraw(containerView, index: 0, maxIndex: Int(page), lastOffset: lastOffset, drawCallback: { [weak self] () -> Void in
+            let strongSelf = self!
+            
             let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
-            self.frame = bakFrame
-            self.scrollView.contentOffset = bakOffset
+            // Recover
+            strongSelf.removeFromSuperview()
+            bakSuperView?.insertSubview(strongSelf, atIndex: bakIndex!)
             
-            snapShotView.removeFromSuperview()
+            strongSelf.frame = bakFrame
             
-            method_exchangeImplementations(swizzledMethod, method)
-            
-            self.isCapturing = false
+            containerView.removeFromSuperview()
             
             completionHandler(capturedImage: capturedImage)
+        })
+    }
+    
+    private func swContentPageDraw (targetView: UIView, index: Int, maxIndex: Int, lastOffset: CGFloat, drawCallback: () -> Void) {
+        
+        // set up split frame of super view
+        var splitFrame = CGRectMake(0, CGFloat(index) * targetView.frame.size.height, targetView.bounds.size.width, targetView.frame.size.height)
+        // set up webview frame
+        self.frame = CGRectMake(0, -(CGFloat(index) * targetView.frame.size.height), targetView.bounds.size.width, (CGFloat(index + 1) * targetView.frame.size.height))
+        
+        if (index == maxIndex) {
+            splitFrame = CGRectMake(0, CGFloat(index) * targetView.frame.size.height - lastOffset, targetView.bounds.size.width,  targetView.frame.size.height)
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            targetView.drawViewHierarchyInRect(splitFrame, afterScreenUpdates: true)
+            
+            if index < maxIndex {
+                self.swContentPageDraw(targetView, index: index + 1, maxIndex: maxIndex, lastOffset: lastOffset, drawCallback: drawCallback)
+            }else{
+                drawCallback()
+            }
         }
     }
     
     // BUG: Exists a problem, position: fixed property problem.
-    public func swContentCompCapture (completionHandler: (capturedImage: UIImage?) -> Void) {
+    public func swContentScrollCapture (completionHandler: (capturedImage: UIImage?) -> Void) {
+        
+        self.isCapturing = true
+        
         // Put a fake Cover of View
         let snapShotView = self.snapshotViewAfterScreenUpdates(true)
         snapShotView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, snapShotView.frame.size.width, snapShotView.frame.size.height)
@@ -79,7 +122,7 @@ public extension WKWebView {
         
         UIGraphicsBeginImageContextWithOptions(self.scrollView.contentSize, false, UIScreen.mainScreen().scale)
         
-        self.swContentDraw(0, maxIndex: Int(page), drawCallback: { [weak self] () -> Void in
+        self.swContentScrollPageDraw(0, maxIndex: Int(page), drawCallback: { [weak self] () -> Void in
             let strongSelf = self
             
             let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -96,7 +139,7 @@ public extension WKWebView {
         
     }
     
-    public func swContentDraw (index: Int, maxIndex: Int, drawCallback: () -> Void) {
+    private func swContentScrollPageDraw (index: Int, maxIndex: Int, drawCallback: () -> Void) {
         
         self.scrollView.setContentOffset(CGPointMake(0, CGFloat(index) * self.scrollView.frame.size.height), animated: false)
         let splitFrame = CGRectMake(0, CGFloat(index) * self.scrollView.frame.size.height, bounds.size.width, bounds.size.height)
@@ -105,11 +148,36 @@ public extension WKWebView {
             self.drawViewHierarchyInRect(splitFrame, afterScreenUpdates: true)
             
             if index < maxIndex {
-                self.swContentDraw(index + 1, maxIndex: maxIndex, drawCallback: drawCallback)
+                self.swContentScrollPageDraw(index + 1, maxIndex: maxIndex, drawCallback: drawCallback)
             }else{
                 drawCallback()
             }
         }
+    }
+    
+    // Util Methods
+    private func foundViewControllerByView(view: UIView) -> UIViewController? {
+        var responder = self.nextResponder();
+        while responder !=  nil {
+            if responder!.isKindOfClass(UIViewController) {
+                return responder as? UIViewController
+            }
+            responder = responder!.nextResponder()
+        }
+        return nil
+    }
+    
+    private func offsetForLastView() -> CGFloat {
+        let vc = self.foundViewControllerByView(self)
+        if ((vc?.navigationController) != nil){
+            if ((vc?.navigationController?.navigationBarHidden) == true) {
+                return 20
+            }else{
+                return 64
+            }
+        }
+        
+        return 0
     }
     
 }

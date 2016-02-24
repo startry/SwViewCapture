@@ -64,6 +64,9 @@ class STScrollViewDemoController: UIViewController {
     func didCaptureBtnClicked(button: UIButton){
         
         scrollView?.swContentCapture({ (capturedImage) -> Void in
+            
+            UIImageWriteToSavedPhotosAlbum(capturedImage!, self, nil, nil)
+            
             let vc = ImageViewController(image: capturedImage!)
             self.navigationController?.pushViewController(vc, animated: true)
         })

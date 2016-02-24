@@ -20,25 +20,38 @@ class STWKWebViewDemoController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
         
-        webView = WKWebView()
+        webView = WKWebView(frame: self.view.bounds)
         let url = NSURL(string: "http://www.startry.com")
         let request = NSURLRequest(URL: url!)
         webView?.loadRequest(request)
         
         view.addSubview(webView!)
     }
+
+//    override func viewWillAppear(animated: Bool) {
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//    }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        self.didCaptureBtnClicked(nil)
+//    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        webView?.frame = self.view.bounds
+//        webView?.frame = self.view.bounds
     }
     
     // MARK: Events
-    func didCaptureBtnClicked(button: UIButton){
+    func didCaptureBtnClicked(button: UIButton?){
         
         webView?.swContentCapture({ (capturedImage) -> Void in
+            
+            UIImageWriteToSavedPhotosAlbum(capturedImage!, self, nil, nil)
+
             let vc = ImageViewController(image: capturedImage!)
             self.navigationController?.pushViewController(vc, animated: true)
         })
+        
     }
 }

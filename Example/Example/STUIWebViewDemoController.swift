@@ -20,7 +20,7 @@ class STUIWebViewDemoController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
         
         webView = UIWebView(frame: view.bounds)
-        let url = NSURL(string: "http://stackoverflow.com")
+        let url = NSURL(string: "http://www.startry.com")
         let request = NSURLRequest(URL: url!)
         webView?.loadRequest(request)
         

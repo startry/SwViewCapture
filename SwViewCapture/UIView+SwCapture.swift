@@ -89,43 +89,29 @@ public extension UIScrollView {
         let bakFrame     = self.frame
         let bakOffset    = self.contentOffset
         let bakSuperView = self.superview
+        let bakIndex     = self.superview?.subviews.indexOf(self)
         
         // Scroll To Bottom show all cached view
         if self.frame.size.height < self.contentSize.height {
             self.contentOffset = CGPointMake(0, self.contentSize.height - self.frame.size.height)
-            
-            self.swRenderImageView({ [weak self] (capturedImage) -> Void in
-                
-                let strongSelf = self!
-                // Recover View
-                strongSelf.removeFromSuperview()
-                strongSelf.frame = bakFrame
-                strongSelf.contentOffset = bakOffset
-                bakSuperView?.addSubview(strongSelf)
-                
-                snapShotView.removeFromSuperview()
-                
-                strongSelf.isCapturing = false
-                
-                completionHandler(capturedImage: capturedImage)
-            })
-        }else{
-            self.swRenderImageView({ [weak self] (capturedImage) -> Void in
-                // Recover View
-                let strongSelf = self!
-                
-                strongSelf.removeFromSuperview()
-                strongSelf.frame = bakFrame
-                strongSelf.contentOffset = bakOffset
-                bakSuperView?.addSubview(strongSelf)
-                
-                snapShotView.removeFromSuperview()
-                
-                strongSelf.isCapturing = false
-                
-                completionHandler(capturedImage: capturedImage)
-            })
         }
+        
+        self.swRenderImageView({ [weak self] (capturedImage) -> Void in
+            // Recover View
+            
+            let strongSelf = self!
+            
+            strongSelf.removeFromSuperview()
+            strongSelf.frame = bakFrame
+            strongSelf.contentOffset = bakOffset
+            bakSuperView?.insertSubview(strongSelf, atIndex: bakIndex!)
+            
+            snapShotView.removeFromSuperview()
+            
+            strongSelf.isCapturing = false
+            
+            completionHandler(capturedImage: capturedImage)
+        })
        
     }
     
@@ -147,9 +133,9 @@ public extension UIScrollView {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
         
         if (swContainsWKWebView()) {
-        self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+            self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
         }else{
-        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+            self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         }
         let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
