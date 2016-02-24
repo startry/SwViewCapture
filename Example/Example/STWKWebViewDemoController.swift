@@ -53,5 +53,11 @@ class STWKWebViewDemoController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         })
         
+//        webView?.swContentScrollCapture({ (capturedImage) -> Void in
+//            UIImageWriteToSavedPhotosAlbum(capturedImage!, self, nil, nil)
+//            
+//            let vc = ImageViewController(image: capturedImage!)
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        })
     }
 }
