@@ -104,7 +104,9 @@ public extension WKWebView {
         }
     }
     
-    // BUG: Exists a problem, position: fixed property problem.
+
+    // Simulate People Action, all the `fixed` element will be repeate
+    // SwContentCapture will capture all content without simulate people action, more perfect.
     public func swContentScrollCapture (completionHandler: (capturedImage: UIImage?) -> Void) {
         
         self.isCapturing = true
@@ -155,7 +157,11 @@ public extension WKWebView {
         }
     }
     
-    // Util Methods
+    // MARK: Util Methods
+    // WKWebview maybe show a offset at last page view capture on UINavigationController.
+    // case 1. view on presentedViewController
+    // case 2. view on UINavigationController (UINavigationBar is Showing)
+    // case 3. view on UINavigationController (UINavigationBar is Hidding)
     private func foundViewControllerByView(view: UIView) -> UIViewController? {
         var responder = self.nextResponder();
         while responder !=  nil {
