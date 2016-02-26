@@ -10,7 +10,7 @@ s.description      = <<-DESC
 s.homepage         = "https://github.com/startry/SwViewCapture"
 s.license          = 'MIT'
 s.author           = { "chenxing.cx" => "chenxingfl@gmail.com" }
-s.source           = { :git => "https://github.com/startry/SwViewCapture.git", :tag => "1.0.2" }
+s.source           = { :git => "https://github.com/startry/SwViewCapture.git", :tag => "1.0.3" }
 s.social_media_url = 'https://twitter.com/xStartry'
 
 s.platform     = :ios, '8.0'
