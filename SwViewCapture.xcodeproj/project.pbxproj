@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		394BA35F1C7451F60012FCB5 /* UIView+SwCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BA35E1C7451F60012FCB5 /* UIView+SwCapture.swift */; };
 		39CC90871C785ED60057B0CE /* WKWebView+SwCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC90861C785ED60057B0CE /* WKWebView+SwCapture.swift */; };
+		39CC90BF1C8033180057B0CE /* UIScrollView+SwCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CC90BE1C8033180057B0CE /* UIScrollView+SwCapture.swift */; };
 		39D6678D1BE2024900BF0BD7 /* SwViewCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 39D6678C1BE2024900BF0BD7 /* SwViewCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		394BA35E1C7451F60012FCB5 /* UIView+SwCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SwCapture.swift"; sourceTree = "<group>"; };
 		39CC90861C785ED60057B0CE /* WKWebView+SwCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+SwCapture.swift"; sourceTree = "<group>"; };
+		39CC90BE1C8033180057B0CE /* UIScrollView+SwCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+SwCapture.swift"; sourceTree = "<group>"; };
 		39D667891BE2024900BF0BD7 /* SwViewCapture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwViewCapture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D6678C1BE2024900BF0BD7 /* SwViewCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwViewCapture.h; sourceTree = "<group>"; };
 		39D6678E1BE2024900BF0BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 				39D6678E1BE2024900BF0BD7 /* Info.plist */,
 				394BA35E1C7451F60012FCB5 /* UIView+SwCapture.swift */,
 				39CC90861C785ED60057B0CE /* WKWebView+SwCapture.swift */,
+				39CC90BE1C8033180057B0CE /* UIScrollView+SwCapture.swift */,
 			);
 			path = SwViewCapture;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			files = (
 				39CC90871C785ED60057B0CE /* WKWebView+SwCapture.swift in Sources */,
 				394BA35F1C7451F60012FCB5 /* UIView+SwCapture.swift in Sources */,
+				39CC90BF1C8033180057B0CE /* UIScrollView+SwCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
