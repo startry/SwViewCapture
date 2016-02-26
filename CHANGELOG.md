@@ -8,3 +8,6 @@
 1.0.2
 * WKWebView Screenshots perfect support
 * WKWebView support two difference method to capture (scroll & not scroll)
+
+1.0.3
+* optimize WKWebView Screenshots, fixed NavigationBar offset problem
