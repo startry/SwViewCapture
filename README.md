@@ -85,7 +85,7 @@ view.swContentCapture { (capturedImage) -> Void in
 }
 ```
 
-* 滚动截屏(目前只支持WKWebView)
+* 滚动截屏
 
 ``` Swift
 import SwViewCapture
