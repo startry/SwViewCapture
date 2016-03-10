@@ -70,6 +70,14 @@ class STScrollViewDemoController: UIViewController {
             let vc = ImageViewController(image: capturedImage!)
             self.navigationController?.pushViewController(vc, animated: true)
         })
+        
+//        scrollView?.swContentScrollCapture({ (capturedImage) -> Void in
+//            
+//            UIImageWriteToSavedPhotosAlbum(capturedImage!, self, nil, nil)
+//            
+//            let vc = ImageViewController(image: capturedImage!)
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        })
     }
     
 }

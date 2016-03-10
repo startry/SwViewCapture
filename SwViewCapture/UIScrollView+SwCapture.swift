@@ -46,7 +46,7 @@ public extension UIScrollView {
             strongSelf.isCapturing = false
             
             completionHandler(capturedImage: capturedImage)
-            })
+        })
         
     }
     
@@ -64,20 +64,76 @@ public extension UIScrollView {
         let swizzledMethod: Method = class_getInstanceMethod(object_getClass(self), Selector("swSetFrame:"))
         method_exchangeImplementations(method, swizzledMethod)
         
-        let bounds = self.bounds
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
-        
-        if (swContainsWKWebView()) {
-            self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
-        }else{
-            self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        // Sometimes ScrollView will Capture nothing without defer;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            let bounds = self.bounds
+            UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
+            
+            if (self.swContainsWKWebView()) {
+                self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+            }else{
+                self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+            }
+            let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            method_exchangeImplementations(swizzledMethod, method)
+            
+            completionHandler(capturedImage: capturedImage)
         }
-        let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+    }
+    
+    
+    // Simulate People Action, all the `fixed` element will be repeate
+    // SwContentCapture will capture all content without simulate people action, more perfect.
+    public func swContentScrollCapture (completionHandler: (capturedImage: UIImage?) -> Void) {
         
-        method_exchangeImplementations(swizzledMethod, method)
+        self.isCapturing = true
         
-        completionHandler(capturedImage: capturedImage)
+        // Put a fake Cover of View
+        let snapShotView = self.snapshotViewAfterScreenUpdates(true)
+        snapShotView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, snapShotView.frame.size.width, snapShotView.frame.size.height)
+        self.superview?.addSubview(snapShotView)
+        
+        // Backup
+        let bakOffset    = self.contentOffset
+        
+        // Divide
+        let page  = floorf(Float(self.contentSize.height / self.bounds.height))
+        
+        UIGraphicsBeginImageContextWithOptions(self.contentSize, false, UIScreen.mainScreen().scale)
+        
+        self.swContentScrollPageDraw(0, maxIndex: Int(page), drawCallback: { [weak self] () -> Void in
+            let strongSelf = self
+            
+            let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            // Recover
+            strongSelf?.setContentOffset(bakOffset, animated: false)
+            snapShotView.removeFromSuperview()
+            
+            strongSelf?.isCapturing = false
+            
+            completionHandler(capturedImage: capturedImage)
+            })
+        
+    }
+    
+    private func swContentScrollPageDraw (index: Int, maxIndex: Int, drawCallback: () -> Void) {
+        
+        self.setContentOffset(CGPointMake(0, CGFloat(index) * self.frame.size.height), animated: false)
+        let splitFrame = CGRectMake(0, CGFloat(index) * self.frame.size.height, bounds.size.width, bounds.size.height)
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            self.drawViewHierarchyInRect(splitFrame, afterScreenUpdates: true)
+            
+            if index < maxIndex {
+                self.swContentScrollPageDraw(index + 1, maxIndex: maxIndex, drawCallback: drawCallback)
+            }else{
+                drawCallback()
+            }
+        }
     }
 }
 
@@ -85,6 +141,10 @@ public extension UIWebView {
     
     public func swContentCapture (completionHandler: (capturedImage: UIImage?) -> Void) {
         self.scrollView.swContentCapture(completionHandler)
+    }
+    
+    public func swContentScrollCapture (completionHandler: (capturedImage: UIImage?) -> Void) {
+        self.scrollView.swContentScrollCapture(completionHandler)
     }
     
 }

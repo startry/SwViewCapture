@@ -14,7 +14,7 @@ private var SwViewCaptureKey_IsCapturing: String = "SwViewCapture_AssoKey_isCapt
 
 public extension UIView {
     
-    func swSetFrame(frame: CGRect) {
+    public func swSetFrame(frame: CGRect) {
         // Do nothing, use for swizzling
     }
     

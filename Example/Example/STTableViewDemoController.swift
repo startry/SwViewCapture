@@ -19,7 +19,7 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
         
-        tableView = UITableView(frame: view.bounds)
+        tableView = UITableView() // tableView
         
         tableView?.dataSource = self
         tableView?.delegate   = self
@@ -29,10 +29,15 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
         view.addSubview(tableView!)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView?.frame = view.bounds
+    }
+    
     // MARK: TableView DataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 500
+        return 100
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,6 +59,11 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
             let vc = ImageViewController(image: capturedImage!)
             self.navigationController?.pushViewController(vc, animated: true)
         })
+        
+//        tableView?.swContentScrollCapture({ (capturedImage) -> Void in
+//            let vc = ImageViewController(image: capturedImage!)
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        })
     }
     
 }
