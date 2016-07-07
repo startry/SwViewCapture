@@ -39,7 +39,7 @@ public extension WKWebView {
                 
                 strongSelf.isCapturing = false
                 
-                completionHandler(capturedImage: capturedImage!)
+                completionHandler(capturedImage: capturedImage)
             })
         }
     }
