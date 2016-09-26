@@ -16,14 +16,14 @@ class STWKWebViewDemoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.redColor()
+        view.backgroundColor = UIColor.red
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STWKWebViewDemoController.didCaptureBtnClicked(_:)))
         
         webView = WKWebView(frame: self.view.bounds)
-        let url = NSURL(string: "http://www.startry.com")
-        let request = NSURLRequest(URL: url!)
-        webView?.loadRequest(request)
+        let url = URL(string: "http://www.startry.com")
+        let request = URLRequest(url: url!)
+        webView?.load(request)
         
         view.addSubview(webView!)
     }
@@ -43,7 +43,7 @@ class STWKWebViewDemoController: UIViewController {
     }
     
     // MARK: Events
-    func didCaptureBtnClicked(button: UIButton?){
+    func didCaptureBtnClicked(_ button: UIButton?){
         
         webView?.swContentCapture({ (capturedImage) -> Void in
             

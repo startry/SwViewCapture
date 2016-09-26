@@ -18,31 +18,31 @@ class STScrollViewDemoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STScrollViewDemoController.didCaptureBtnClicked(_:)))
         
         // Add Some Color View for Capture
-        let orangeView = UIView(frame: CGRectMake(30, 100, 100, 100))
-        let redView = UIView(frame: CGRectMake(30, 200, 100, 100))
+        let orangeView = UIView(frame: CGRect(x: 30, y: 100, width: 100, height: 100))
+        let redView = UIView(frame: CGRect(x: 30, y: 200, width: 100, height: 100))
         
         let headImage = UIImage(named: "demo_2")
-        let headImageView = UIImageView(frame: CGRectMake(30, 300, headImage!.size.width / 2, headImage!.size.height / 2))
+        let headImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: headImage!.size.width / 2, height: headImage!.size.height / 2))
         headImageView.image = headImage
         
         let sceneImage = UIImage(named: "demo_1")
-        let sceneImageView = UIImageView(frame: CGRectMake(30, 500, sceneImage!.size.width / 2, sceneImage!.size.height / 2))
+        let sceneImageView = UIImageView(frame: CGRect(x: 30, y: 500, width: sceneImage!.size.width / 2, height: sceneImage!.size.height / 2))
         sceneImageView.image = sceneImage
         
-        let url = NSURL(string: "http://www.startry.com")
-        let request = NSURLRequest(URL: url!)
-        let webView = WKWebView(frame: CGRectMake(0, 600, self.view.frame.size.width, 100))
-        webView.loadRequest(request)
+        let url = URL(string: "http://www.startry.com")
+        let request = URLRequest(url: url!)
+        let webView = WKWebView(frame: CGRect(x: 0, y: 600, width: self.view.frame.size.width, height: 100))
+        webView.load(request)
             
-        orangeView.backgroundColor = UIColor.orangeColor()
-        redView.backgroundColor = UIColor.redColor()
+        orangeView.backgroundColor = UIColor.orange
+        redView.backgroundColor = UIColor.red
         
         scrollView = UIScrollView()
-        scrollView?.backgroundColor = UIColor.orangeColor()
-        scrollView?.contentSize = CGSizeMake(view.bounds.width, 800)
+        scrollView?.backgroundColor = UIColor.orange
+        scrollView?.contentSize = CGSize(width: view.bounds.width, height: 800)
         
         scrollView?.addSubview(orangeView)
         scrollView?.addSubview(redView)
@@ -61,7 +61,7 @@ class STScrollViewDemoController: UIViewController {
     
     // MARK: Events
     
-    func didCaptureBtnClicked(button: UIButton){
+    func didCaptureBtnClicked(_ button: UIButton){
         
         scrollView?.swContentCapture({ (capturedImage) -> Void in
             

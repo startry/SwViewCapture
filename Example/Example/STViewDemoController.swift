@@ -16,19 +16,19 @@ class STViewDemoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.yellowColor()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
+        view.backgroundColor = UIColor.yellow
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STViewDemoController.didCaptureBtnClicked(_:)))
         
         // Add Some Color View for Capture
-        let orangeView = UIView(frame: CGRectMake(100, 100, 20, 50))
-        let redView = UIView(frame: CGRectMake(150, 200, 100, 100))
+        let orangeView = UIView(frame: CGRect(x: 100, y: 100, width: 20, height: 50))
+        let redView = UIView(frame: CGRect(x: 150, y: 200, width: 100, height: 100))
         
         let headImage = UIImage(named: "demo_2")
-        let headImageView = UIImageView(frame: CGRectMake(30, 300, headImage!.size.width, headImage!.size.height))
+        let headImageView = UIImageView(frame: CGRect(x: 30, y: 300, width: headImage!.size.width, height: headImage!.size.height))
         headImageView.image = headImage
         
-        orangeView.backgroundColor = UIColor.orangeColor()
-        redView.backgroundColor = UIColor.redColor()
+        orangeView.backgroundColor = UIColor.orange
+        redView.backgroundColor = UIColor.red
         
         view.addSubview(orangeView)
         view.addSubview(redView)
@@ -37,7 +37,7 @@ class STViewDemoController: UIViewController {
     
 // MARK: Events
     
-    func didCaptureBtnClicked(button: UIButton){
+    func didCaptureBtnClicked(_ button: UIButton){
         
         view.swCapture { (capturedImage) -> Void in
             let vc = ImageViewController(image: capturedImage!)

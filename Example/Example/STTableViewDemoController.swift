@@ -17,14 +17,14 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STTableViewDemoController.didCaptureBtnClicked(_:)))
         
         tableView = UITableView() // tableView
         
         tableView?.dataSource = self
         tableView?.delegate   = self
         
-        tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentify)
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentify)
         
         view.addSubview(tableView!)
     }
@@ -36,24 +36,24 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: TableView DataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentify)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentify)
         
-        cell?.textLabel?.text = "show cell \(indexPath.row)"
+        cell?.textLabel?.text = "show cell \((indexPath as NSIndexPath).row)"
         
         return cell!
     }
     
     // MARK : Events
-    func didCaptureBtnClicked(button: UIButton){
+    func didCaptureBtnClicked(_ button: UIButton){
         
         tableView?.swContentCapture({ (capturedImage) -> Void in
             let vc = ImageViewController(image: capturedImage!)

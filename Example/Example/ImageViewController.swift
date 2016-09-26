@@ -28,7 +28,8 @@ class ImageViewController: UIViewController {
         
         self.imageView = UIImageView()
         self.imageView?.image = image
-        self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        self.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        
         
         self.scrollView = UIScrollView()
         
@@ -36,10 +37,10 @@ class ImageViewController: UIViewController {
         self.view.addSubview(self.scrollView!)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if image?.size.height == UIScreen.mainScreen().bounds.height {
-            self.scrollView?.setContentOffset(CGPointMake(0, (self.scrollView?.contentSize.height)! - (self.scrollView?.frame.size.height)!), animated: true)
+        if image?.size.height == UIScreen.main.bounds.height {
+            self.scrollView?.setContentOffset(CGPoint(x: 0, y: (self.scrollView?.contentSize.height)! - (self.scrollView?.frame.size.height)!), animated: true)
         }
     }
     
@@ -50,8 +51,8 @@ class ImageViewController: UIViewController {
         let width  = (self.image?.size.width)!
         
         self.scrollView?.frame = self.view.bounds
-        self.scrollView?.contentSize = CGSizeMake(width, height)
+        self.scrollView?.contentSize = CGSize(width: width, height: height)
         
-        self.imageView?.frame = CGRectMake(0, 0, width, height)
+        self.imageView?.frame = CGRect(x: 0, y: 0, width: width, height: height)
     }
 }
