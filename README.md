@@ -8,6 +8,8 @@ SwViewCapture could convert all content of UIWebView to a UIImage.
 
 SwViewCapture支持截取网页以及ScrollView的所有内容
 
+<font color="red">Swift 3.0 still has flash problem now!!</font>
+
 [![Version](https://img.shields.io/cocoapods/v/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
 [![License](https://img.shields.io/cocoapods/l/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
 [![Platform](https://img.shields.io/cocoapods/p/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
@@ -97,7 +99,7 @@ view.swContentScrollCapture { (capturedImage) -> Void in
 
 ## Requirement
 
-iOS 8.0+, Swift 2.0+
+iOS 8.0+, Swift 2.0+ or Swift 3.0(Compatiable)
 
 SwViewCapture is available through [CocoaPods](http://cocoapods.org) now. To Install it, simply and the following line to your Podfile:
 
