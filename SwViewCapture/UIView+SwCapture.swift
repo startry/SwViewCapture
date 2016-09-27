@@ -14,7 +14,7 @@ private var SwViewCaptureKey_IsCapturing: String = "SwViewCapture_AssoKey_isCapt
 
 public extension UIView {
     
-    public func swSetFrame(frame: CGRect) {
+    public func swSetFrame(_ frame: CGRect) {
         // Do nothing, use for swizzling
     }
     
@@ -24,10 +24,14 @@ public extension UIView {
             if num == nil {
                 return false
             }
-            return num.boolValue
+            
+//            num as AnyObject .boolValue
+            return false
+            
+//            return num.boolValue
         }
         set(newValue) {
-            let num = NSNumber(bool: newValue)
+            let num = NSNumber(value: newValue as Bool)
             objc_setAssociatedObject(self, &SwViewCaptureKey_IsCapturing, num, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
@@ -35,7 +39,7 @@ public extension UIView {
     // Ref: chromium source - snapshot_manager, fix wkwebview screenshot bug.
     // https://chromium.googlesource.com/chromium/src.git/+/46.0.2478.0/ios/chrome/browser/snapshots/snapshot_manager.mm
     public func swContainsWKWebView() -> Bool {
-        if self.isKindOfClass(WKWebView) {
+        if self.isKind(of: WKWebView.self) {
             return true
         }
         for subView in self.subviews {
@@ -46,31 +50,31 @@ public extension UIView {
         return false
     }
     
-    public func swCapture(completionHandler: (capturedImage: UIImage?) -> Void) {
+    public func swCapture(_ completionHandler: (_ capturedImage: UIImage?) -> Void) {
         
         self.isCapturing = true
         
         let bounds = self.bounds
         
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context)
-        CGContextTranslateCTM(context, -self.frame.origin.x, -self.frame.origin.y);
+        context?.saveGState()
+        context?.translateBy(x: -self.frame.origin.x, y: -self.frame.origin.y);
         
         if (swContainsWKWebView()) {
-            self.drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+            self.drawHierarchy(in: bounds, afterScreenUpdates: true)
         }else{
-            self.layer.renderInContext(context!)
+            self.layer.render(in: context!)
         }
         let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
         
-        CGContextRestoreGState(context);
+        context?.restoreGState();
         UIGraphicsEndImageContext()
         
         self.isCapturing = false
         
-        completionHandler(capturedImage: capturedImage)
+        completionHandler(capturedImage)
     }
 }
 

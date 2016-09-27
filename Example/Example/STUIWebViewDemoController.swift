@@ -15,26 +15,26 @@ class STUIWebViewDemoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.redColor()
+        view.backgroundColor = UIColor.red
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.Plain, target: self, action: "didCaptureBtnClicked:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STUIWebViewDemoController.didCaptureBtnClicked(_:)))
         
         webView = UIWebView(frame: view.bounds)
-        let url = NSURL(string: "http://www.startry.com")
-        let request = NSURLRequest(URL: url!)
+        let url = URL(string: "http://www.startry.com")
+        let request = URLRequest(url: url!)
         webView?.loadRequest(request)
         
         view.addSubview(webView!)
     }
     
     // MARK: Events
-    func didCaptureBtnClicked(button: UIButton){
+    func didCaptureBtnClicked(_ button: UIButton){
         webView?.swContentCapture({ (capturedImage) -> Void in
             
             UIImageWriteToSavedPhotosAlbum(capturedImage!, self, nil, nil)
-            
-            let vc = ImageViewController(image: capturedImage!)
-            self.navigationController?.pushViewController(vc, animated: true)
+//            
+//            let vc = ImageViewController(image: capturedImage!)
+//            self.navigationController?.pushViewController(vc, animated: true)
         })
         
 //        webView?.swContentScrollCapture({ (capturedImage) -> Void in
