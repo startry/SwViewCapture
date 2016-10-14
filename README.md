@@ -107,6 +107,12 @@ SwViewCapture is available through [CocoaPods](http://cocoapods.org) now. To Ins
 pod "SwViewCapture"
 ```
 
+Or, if you’re using [Carthage](https://github.com/Carthage/Carthage), add SwViewCapture to your Cartfile:
+
+``` 
+github "startry/SwViewCapture"
+```
+
 ## License
 
 SwViewCapture is available under the MIT license. See the LICENSE file for more info.
