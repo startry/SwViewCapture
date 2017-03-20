@@ -4,12 +4,14 @@ A nice iOS View Capture Library which can capture all content.
 
 SwViewCapture could convert all content of UIWebView to a UIImage.
 
+Swift 3.0 still has flash problem now!!
+
 一个用起来还不错的iOS截图库.(支持截取所有内容, 适用于所有ScrollView组成的视图, 包括WKWebView)
 
 SwViewCapture支持截取网页以及ScrollView的所有内容
 
 Swift 3.0目前存在一定的闪烁问题尚未解决，不影响功能。
-Swift 3.0 still has flash problem now!!
+
 
 [![Version](https://img.shields.io/cocoapods/v/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
 [![License](https://img.shields.io/cocoapods/l/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
