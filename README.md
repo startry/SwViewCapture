@@ -8,7 +8,8 @@ SwViewCapture could convert all content of UIWebView to a UIImage.
 
 SwViewCapture支持截取网页以及ScrollView的所有内容
 
-<font color="red">Swift 3.0 still has flash problem now!!</font>
+Swift 3.0目前存在一定的闪烁问题尚未解决，不影响功能。
+Swift 3.0 still has flash problem now!!
 
 [![Version](https://img.shields.io/cocoapods/v/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
 [![License](https://img.shields.io/cocoapods/l/SwViewCapture.svg?style=flat)](http://cocoapods.org/pods/SwViewCapture)
@@ -25,8 +26,6 @@ SwViewCapture支持截取网页以及ScrollView的所有内容
 3. Support capture WKWebView. 
 	* WKWebview is hard to capture; 
 	* WKWebView could be capture like UIWebView
-4. Flasing will not appear in the process of Screenshots.
-	* SwCaptureView use a fake screenshots as a cover which over target view. All the action of target will be hidden below the fake screenshots.
 
 ###功能
 
@@ -39,9 +38,7 @@ SwViewCapture支持截取网页以及ScrollView的所有内容
 3. 支持截取WKWebView的内容.
 	* 因为WKWebView的内部实现问题, WKWebView比较难去截屏
 	* 目前SwViewCapture对WKWebView的支持比较完美, 已经提供了两种截图方法, 非滚动的截图方式已经解决了`position: fixed`的问题
-   
-4. 截图过程中不会出现视图闪烁.
-	* 截图过程中, 使用一张伪装截图遮盖屏幕, 底层截图活动不透明化。
+	
 
 ## Usage
 
