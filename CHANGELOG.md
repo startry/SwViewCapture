@@ -23,3 +23,7 @@
 1.0.5
 
 * Compatible to Swift 3.0 which contributed by [Lafree317](https://github.com/Lafree317).
+
+1.0.6
+
+* fixed the problem that isCapurting always return false
