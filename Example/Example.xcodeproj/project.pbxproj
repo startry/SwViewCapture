@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3916547E1EE7C94200A2E90B /* STCollectionViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916547D1EE7C94200A2E90B /* STCollectionViewDemoController.swift */; };
 		394BA34D1C71B6BF0012FCB5 /* SwViewCapture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D667C51BE2053600BF0BD7 /* SwViewCapture.framework */; };
 		394BA34F1C71B7300012FCB5 /* SwViewCapture.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D667C51BE2053600BF0BD7 /* SwViewCapture.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		394BA3541C71D1120012FCB5 /* STUIWebViewDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394BA3531C71D1120012FCB5 /* STUIWebViewDemoController.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3916547D1EE7C94200A2E90B /* STCollectionViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCollectionViewDemoController.swift; sourceTree = "<group>"; };
 		394BA3531C71D1120012FCB5 /* STUIWebViewDemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STUIWebViewDemoController.swift; sourceTree = "<group>"; };
 		394BA3601C7461880012FCB5 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		39D6679D1BE202AC00BF0BD7 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 				39D667A71BE202AC00BF0BD7 /* Assets.xcassets */,
 				39D667A91BE202AC00BF0BD7 /* LaunchScreen.storyboard */,
 				39D667AC1BE202AC00BF0BD7 /* Info.plist */,
+				3916547D1EE7C94200A2E90B /* STCollectionViewDemoController.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			files = (
 				39D667BC1BE202FE00BF0BD7 /* STViewDemoController.swift in Sources */,
 				39D667BD1BE202FE00BF0BD7 /* STWKWebViewDemoController.swift in Sources */,
+				3916547E1EE7C94200A2E90B /* STCollectionViewDemoController.swift in Sources */,
 				394BA3541C71D1120012FCB5 /* STUIWebViewDemoController.swift in Sources */,
 				39D667A11BE202AC00BF0BD7 /* STDemoAppDelegate.swift in Sources */,
 				39D667BA1BE202FE00BF0BD7 /* STScrollViewDemoController.swift in Sources */,
