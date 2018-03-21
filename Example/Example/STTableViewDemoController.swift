@@ -46,14 +46,13 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentify)
-        
         cell?.textLabel?.text = "show cell \((indexPath as NSIndexPath).row)"
         
         return cell!
     }
     
     // MARK : Events
-    func didCaptureBtnClicked(_ button: UIButton){
+    @objc func didCaptureBtnClicked(_ button: UIButton){
         
         tableView?.swContentCapture({ (capturedImage) -> Void in
             let vc = ImageViewController(image: capturedImage!)

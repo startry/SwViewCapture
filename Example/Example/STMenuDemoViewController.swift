@@ -100,7 +100,7 @@ class STMenuDemoViewController: UIViewController {
     
 // MARK: Events
     
-    func didBtnClicked(_ button: UIButton){
+    @objc func didBtnClicked(_ button: UIButton){
         if(button == viewBtn) {
             let vc = STViewDemoController()
             navigationController?.pushViewController(vc, animated: true)

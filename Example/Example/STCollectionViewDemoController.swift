@@ -57,7 +57,7 @@ class STCollectionViewDemoController: UIViewController, UICollectionViewDelegate
     }
 
     // MARK : Capture Button Events
-    func didCaptureBtnClicked(_ button: UIButton){
+    @objc func didCaptureBtnClicked(_ button: UIButton){
         
         collectView?.swContentCapture({ (capturedImage) -> Void in
             let vc = ImageViewController(image: capturedImage!)
