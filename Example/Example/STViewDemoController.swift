@@ -37,7 +37,7 @@ class STViewDemoController: UIViewController {
     
 // MARK: Events
     
-    func didCaptureBtnClicked(_ button: UIButton){
+    @objc func didCaptureBtnClicked(_ button: UIButton){
         
         view.swCapture { (capturedImage) -> Void in
             let vc = ImageViewController(image: capturedImage!)

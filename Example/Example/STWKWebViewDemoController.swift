@@ -43,7 +43,7 @@ class STWKWebViewDemoController: UIViewController {
     }
     
     // MARK: Events
-    func didCaptureBtnClicked(_ button: UIButton?){
+    @objc func didCaptureBtnClicked(_ button: UIButton?){
         
         webView?.swContentCapture({ (capturedImage) -> Void in
             

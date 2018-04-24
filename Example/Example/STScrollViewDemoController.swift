@@ -61,7 +61,7 @@ class STScrollViewDemoController: UIViewController {
     
     // MARK: Events
     
-    func didCaptureBtnClicked(_ button: UIButton){
+    @objc func didCaptureBtnClicked(_ button: UIButton){
         
         scrollView?.swContentCapture({ (capturedImage) -> Void in
             
