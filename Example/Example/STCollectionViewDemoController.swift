@@ -16,10 +16,10 @@ class STCollectionViewDemoController: UIViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STTableViewDemoController.didCaptureBtnClicked(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItem.Style.plain, target: self, action: #selector(STTableViewDemoController.didCaptureBtnClicked(_:)))
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = UICollectionViewScrollDirection.vertical;
+        flowLayout.scrollDirection = UICollectionView.ScrollDirection.vertical;
         collectView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
         
         collectView?.dataSource = self

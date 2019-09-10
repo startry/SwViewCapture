@@ -17,7 +17,7 @@ class STUIWebViewDemoController: UIViewController {
         
         view.backgroundColor = UIColor.red
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STUIWebViewDemoController.didCaptureBtnClicked(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItem.Style.plain, target: self, action: #selector(STUIWebViewDemoController.didCaptureBtnClicked(_:)))
         
         webView = UIWebView(frame: view.bounds)
         let url = URL(string: "http://www.startry.com")

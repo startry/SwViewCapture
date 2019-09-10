@@ -17,7 +17,7 @@ class STViewDemoController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.yellow
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STViewDemoController.didCaptureBtnClicked(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItem.Style.plain, target: self, action: #selector(STViewDemoController.didCaptureBtnClicked(_:)))
         
         // Add Some Color View for Capture
         let orangeView = UIView(frame: CGRect(x: 100, y: 100, width: 20, height: 50))

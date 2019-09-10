@@ -28,7 +28,7 @@ class ImageViewController: UIViewController {
         
         self.imageView = UIImageView()
         self.imageView?.image = image
-        self.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        self.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
         
         
         self.scrollView = UIScrollView()
