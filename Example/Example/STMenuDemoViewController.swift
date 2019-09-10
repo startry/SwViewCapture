@@ -42,19 +42,19 @@ class STMenuDemoViewController: UIViewController {
         let oldWebViewBtn = UIButton()
         let collectBtn    = UIButton()
         
-        viewBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
-        scrollViewBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
-        tableViewBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
-        webViewBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
-        oldWebViewBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
-        collectBtn.setTitleColor(UIColor.black, for: UIControlState.normal)
+        viewBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        scrollViewBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        tableViewBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        webViewBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        oldWebViewBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        collectBtn.setTitleColor(UIColor.black, for: UIControl.State.normal)
         
-        viewBtn.setTitle("View示例", for: UIControlState.normal)
-        scrollViewBtn.setTitle("ScrollView示例", for: UIControlState.normal)
-        tableViewBtn.setTitle("TableView示例", for: UIControlState.normal)
-        webViewBtn.setTitle("WKWebView示例", for: UIControlState.normal)
-        oldWebViewBtn.setTitle("UIWebView示例", for: UIControlState.normal)
-        collectBtn.setTitle("CollectionView示例", for: UIControlState.normal)
+        viewBtn.setTitle("View示例", for: UIControl.State.normal)
+        scrollViewBtn.setTitle("ScrollView示例", for: UIControl.State.normal)
+        tableViewBtn.setTitle("TableView示例", for: UIControl.State.normal)
+        webViewBtn.setTitle("WKWebView示例", for: UIControl.State.normal)
+        oldWebViewBtn.setTitle("UIWebView示例", for: UIControl.State.normal)
+        collectBtn.setTitle("CollectionView示例", for: UIControl.State.normal)
         
         view.addSubview(viewBtn)
         view.addSubview(scrollViewBtn)
@@ -65,12 +65,12 @@ class STMenuDemoViewController: UIViewController {
         
         let actionSel = #selector(STMenuDemoViewController.didBtnClicked(_:))
         
-        viewBtn.addTarget(self, action: actionSel, for: UIControlEvents.touchUpInside)
-        scrollViewBtn.addTarget(self, action: actionSel, for: UIControlEvents.touchUpInside)
-        tableViewBtn.addTarget(self, action: actionSel, for: UIControlEvents.touchUpInside)
-        webViewBtn.addTarget(self, action: actionSel, for: UIControlEvents.touchUpInside)
-        oldWebViewBtn.addTarget(self, action: actionSel, for: UIControlEvents.touchUpInside)
-        collectBtn.addTarget(self, action: actionSel, for: UIControlEvents.touchUpInside)
+        viewBtn.addTarget(self, action: actionSel, for: UIControl.Event.touchUpInside)
+        scrollViewBtn.addTarget(self, action: actionSel, for: UIControl.Event.touchUpInside)
+        tableViewBtn.addTarget(self, action: actionSel, for: UIControl.Event.touchUpInside)
+        webViewBtn.addTarget(self, action: actionSel, for: UIControl.Event.touchUpInside)
+        oldWebViewBtn.addTarget(self, action: actionSel, for: UIControl.Event.touchUpInside)
+        collectBtn.addTarget(self, action: actionSel, for: UIControl.Event.touchUpInside)
         
         self.viewBtn = viewBtn
         self.scrollViewBtn = scrollViewBtn

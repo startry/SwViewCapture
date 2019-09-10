@@ -14,7 +14,7 @@ private var SwViewCaptureKey_IsCapturing: String = "SwViewCapture_AssoKey_isCapt
 
 public extension UIView {
     
-    @objc public func swSetFrame(_ frame: CGRect) {
+    @objc func swSetFrame(_ frame: CGRect) {
         // Do nothing, use for swizzling
     }
     
@@ -39,7 +39,7 @@ public extension UIView {
     
     // Ref: chromium source - snapshot_manager, fix wkwebview screenshot bug.
     // https://chromium.googlesource.com/chromium/src.git/+/46.0.2478.0/ios/chrome/browser/snapshots/snapshot_manager.mm
-    public func swContainsWKWebView() -> Bool {
+    func swContainsWKWebView() -> Bool {
         if self.isKind(of: WKWebView.self) {
             return true
         }
@@ -51,7 +51,7 @@ public extension UIView {
         return false
     }
     
-    public func swCapture(_ completionHandler: (_ capturedImage: UIImage?) -> Void) {
+    func swCapture(_ completionHandler: (_ capturedImage: UIImage?) -> Void) {
         
         self.isCapturing = true
         

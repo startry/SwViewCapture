@@ -17,7 +17,7 @@ class STTableViewDemoController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STTableViewDemoController.didCaptureBtnClicked(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItem.Style.plain, target: self, action: #selector(STTableViewDemoController.didCaptureBtnClicked(_:)))
         
         tableView = UITableView() // tableView
         

@@ -18,7 +18,7 @@ class STScrollViewDemoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItemStyle.plain, target: self, action: #selector(STScrollViewDemoController.didCaptureBtnClicked(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Capture", style: UIBarButtonItem.Style.plain, target: self, action: #selector(STScrollViewDemoController.didCaptureBtnClicked(_:)))
         
         // Add Some Color View for Capture
         let orangeView = UIView(frame: CGRect(x: 30, y: 100, width: 100, height: 100))
